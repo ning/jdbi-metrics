@@ -7,16 +7,19 @@ import com.google.inject.Provider;
 import com.google.inject.name.Named;
 import com.ning.jdbi.metrics.JdbiGroupStrategy;
 import com.ning.jdbi.metrics.MetricsTimingCollector;
+import com.yammer.metrics.MetricsRegistry;
 
 public class MetricsTimingCollectorProvider implements Provider<MetricsTimingCollector>
 {
+    private final MetricsRegistry metricsRegistry;
     private final JdbiGroupStrategy jdbiGroupStrategy;
     private TimeUnit durationUnit;
     private TimeUnit rateUnit;
 
     @Inject
-    public MetricsTimingCollectorProvider(final JdbiGroupStrategy jdbiGroupStrategy)
+    public MetricsTimingCollectorProvider(final MetricsRegistry metricsRegistry, final JdbiGroupStrategy jdbiGroupStrategy)
     {
+        this.metricsRegistry = metricsRegistry;
         this.jdbiGroupStrategy = jdbiGroupStrategy;
     }
 
@@ -35,7 +38,8 @@ public class MetricsTimingCollectorProvider implements Provider<MetricsTimingCol
     @Override
     public MetricsTimingCollector get()
     {
-        return new MetricsTimingCollector(jdbiGroupStrategy,
+        return new MetricsTimingCollector(metricsRegistry,
+                                          jdbiGroupStrategy,
                                           durationUnit == null ? TimeUnit.MILLISECONDS : durationUnit,
                                           rateUnit == null ? TimeUnit.SECONDS : rateUnit);
     }
