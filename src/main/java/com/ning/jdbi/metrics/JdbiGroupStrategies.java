@@ -1,8 +1,6 @@
 package com.ning.jdbi.metrics;
 
 import java.lang.reflect.Method;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,13 +27,13 @@ public final class JdbiGroupStrategies
     private static final StatementName UNKNOWN_SQL = new StatementName("sql", "unknown", "");
 
     /** Context element for JMX class. */
-    private static final String STATEMENT_CLASS = "_jmx_class";
+    public static final String STATEMENT_CLASS = "_jmx_class";
 
     /** Context element for JMX group. */
-    private static final String STATEMENT_GROUP = "_jmx_group";
+    public static final String STATEMENT_GROUP = "_jmx_group";
 
     /** Context element for JMX name. */
-    private static final String STATEMENT_NAME = "_jmx_name";
+    public static final String STATEMENT_NAME = "_jmx_name";
 
     /** Characters safe to be used in JMX names. */
     private static final Pattern JMX_SAFE_CHARS = Pattern.compile("[^a-zA-Z0-9_\\.-]");
