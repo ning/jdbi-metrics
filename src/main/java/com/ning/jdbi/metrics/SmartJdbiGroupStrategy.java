@@ -4,7 +4,11 @@ import com.ning.jdbi.metrics.JdbiGroupStrategies.BaseJdbiGroupStrategy;
 
 
 /**
- * Shortens names provided by the AnnotatedDBI Providers to look nice in JMX.
+ * Adds statistics for JDBI queries that set the
+ * {@link JdbiGroupStrategies#STATEMENT_CLASS} and
+ * {@link JdbiGroupStrategies#STATEMENT_NAME} for class based display or
+ * {@link JdbiGroupStrategies#STATEMENT_GROUP} and
+ * {@link JdbiGroupStrategies#STATEMENT_NAME} for group based display.
  *
  * Also knows how to deal with SQL Object statements.
  */
