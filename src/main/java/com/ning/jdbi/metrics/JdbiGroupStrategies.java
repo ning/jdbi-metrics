@@ -1,6 +1,9 @@
 package com.ning.jdbi.metrics;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,11 +45,16 @@ public final class JdbiGroupStrategies
 
     public abstract static class BaseJdbiGroupStrategy implements JdbiGroupStrategy
     {
-        private final JdbiGroupStrategy [] strategies;
+        private final List<JdbiGroupStrategy> strategies = new ArrayList<JdbiGroupStrategy>();
 
         protected BaseJdbiGroupStrategy(final JdbiGroupStrategy ... strategies)
         {
-            this.strategies = strategies;
+            registerStrategies(strategies);
+        }
+
+        protected void registerStrategies(final JdbiGroupStrategy ... strategies)
+        {
+            this.strategies.addAll(Arrays.asList(strategies));
         }
 
         @Override
