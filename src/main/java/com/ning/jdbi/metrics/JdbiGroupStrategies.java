@@ -35,26 +35,9 @@ public final class JdbiGroupStrategies
     /** Context element for JMX name. */
     public static final String STATEMENT_NAME = "_jmx_name";
 
-    /** Characters safe to be used in JMX names. */
-    private static final Pattern JMX_SAFE_CHARS = Pattern.compile("[^a-zA-Z0-9_\\.-]");
-
-    /**
-     * Turns an arbitrary string into a JMX safe name.
-     */
-    private static final String getJmxSafeName(final String name)
-    {
-        final String result = JMX_SAFE_CHARS.matcher(name).replaceAll("_");
-
-        if (result == null || result.length() == 0) {
-            return "_";
-        }
-
-        return (Character.isDigit(result.charAt(0))) ? "_" + result : result;
-    }
-
     private static StatementName forRawSql(final String rawSql)
     {
-        return new StatementName("sql", "raw", getJmxSafeName(rawSql));
+        return new StatementName("sql", "raw", rawSql);
     }
 
     public abstract static class BaseJdbiGroupStrategy implements JdbiGroupStrategy
@@ -138,8 +121,8 @@ public final class JdbiGroupStrategies
                 return forRawSql(rawSql);
             }
 
-            final String group = getJmxSafeName(rawSql.substring(0, colon));
-            final String name = getJmxSafeName(rawSql.substring(colon + 1));
+            final String group = rawSql.substring(0, colon);
+            final String name = rawSql.substring(colon + 1);
             return new StatementName(group, name, "");
         }
     }
@@ -153,14 +136,14 @@ public final class JdbiGroupStrategies
         @Override
         public StatementName getStatementName(final StatementContext statementContext)
         {
-            Class<?> clazz = statementContext.getSqlObjectType();
-            Method method = statementContext.getSqlObjectMethod();
+            final Class<?> clazz = statementContext.getSqlObjectType();
+            final Method method = statementContext.getSqlObjectMethod();
             if (clazz != null) {
                 final String rawSql = statementContext.getRawSql();
 
                 final String group = clazz.getPackage().getName();
-                final String name = getJmxSafeName(clazz.getSimpleName());
-                final String type = getJmxSafeName(method == null ? rawSql : method.getName());
+                final String name = clazz.getSimpleName();
+                final String type = method == null ? rawSql : method.getName();
                 return new StatementName(group, name, type);
             }
             return null;
@@ -191,7 +174,7 @@ public final class JdbiGroupStrategies
                 return null;
             }
 
-            return new StatementName(className.substring(0, dotPos), className.substring(dotPos+1),  statementName);
+            return new StatementName(className.substring(0, dotPos), className.substring(dotPos+1), statementName);
         }
     }
 
