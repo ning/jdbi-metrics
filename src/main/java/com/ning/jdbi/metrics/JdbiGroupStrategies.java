@@ -57,7 +57,7 @@ public final class JdbiGroupStrategies
         return new StatementName("sql", "raw", getJmxSafeName(rawSql));
     }
 
-    abstract static class BaseJdbiGroupStrategy implements JdbiGroupStrategy
+    public abstract static class BaseJdbiGroupStrategy implements JdbiGroupStrategy
     {
         private final JdbiGroupStrategy [] strategies;
 
