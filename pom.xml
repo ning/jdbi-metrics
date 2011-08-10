@@ -4,7 +4,7 @@
   <groupId>com.ning.jdbi</groupId>
   <artifactId>jdbi-metrics</artifactId>
   <name>jdbi-metrics</name>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
   <description>jDBI instrumentation via the metrics library</description>
   <url>http://www.ning.com</url>
