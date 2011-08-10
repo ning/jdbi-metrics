@@ -5,14 +5,18 @@ import com.ning.jdbi.metrics.JdbiGroupStrategies.BaseJdbiGroupStrategy;
 
 /**
  * Shortens names provided by the AnnotatedDBI Providers to look nice in JMX.
+ *
+ * Also knows how to deal with SQL Object statements.
  */
-public class ContextJdbiGroupStrategy extends BaseJdbiGroupStrategy
+public class SmartJdbiGroupStrategy extends BaseJdbiGroupStrategy
 {
-    public ContextJdbiGroupStrategy()
+    public SmartJdbiGroupStrategy()
     {
         super(JdbiGroupStrategies.CHECK_EMPTY,
-              JdbiGroupStrategies.CHECK_RAW,
+              JdbiGroupStrategies.CONTEXT_CLASS,
               JdbiGroupStrategies.CONTEXT_NAME,
+              JdbiGroupStrategies.SQL_OBJECT,
+              JdbiGroupStrategies.CHECK_RAW,
               JdbiGroupStrategies.NAIVE_NAME);
     }
 }
