@@ -7,7 +7,7 @@ import com.google.inject.Provider;
 import com.google.inject.name.Named;
 import com.ning.jdbi.metrics.JdbiGroupStrategy;
 import com.ning.jdbi.metrics.MetricsTimingCollector;
-import com.yammer.metrics.MetricsRegistry;
+import com.yammer.metrics.core.MetricsRegistry;
 
 public class MetricsTimingCollectorProvider implements Provider<MetricsTimingCollector>
 {

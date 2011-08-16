@@ -5,8 +5,8 @@ import java.util.concurrent.TimeUnit;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.TimingCollector;
 
-import com.yammer.metrics.MetricsRegistry;
 import com.yammer.metrics.core.MetricName;
+import com.yammer.metrics.core.MetricsRegistry;
 import com.yammer.metrics.core.TimerMetric;
 
 public class MetricsTimingCollector implements TimingCollector
@@ -17,9 +17,9 @@ public class MetricsTimingCollector implements TimingCollector
     private final TimeUnit rateUnit;
 
     public MetricsTimingCollector(final MetricsRegistry metricsRegistry,
-                                    final JdbiGroupStrategy jdbiGroupStrategy,
-                                    final TimeUnit durationUnit,
-                                    final TimeUnit rateUnit)
+                                  final JdbiGroupStrategy jdbiGroupStrategy,
+                                  final TimeUnit durationUnit,
+                                  final TimeUnit rateUnit)
     {
         this.metricsRegistry = metricsRegistry;
         this.jdbiGroupStrategy = jdbiGroupStrategy;
