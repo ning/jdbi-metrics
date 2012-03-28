@@ -4,7 +4,7 @@
   <groupId>com.ning.jdbi</groupId>
   <artifactId>jdbi-metrics</artifactId>
   <name>jdbi-metrics</name>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>2.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <description>jDBI instrumentation via the metrics library</description>
   <url>http://www.ning.com</url>
@@ -50,7 +50,7 @@
     <dependency>
       <groupId>com.yammer.metrics</groupId>
       <artifactId>metrics-core</artifactId>
-      <version>2.0.0-BETA15</version>
+      <version>2.1.1</version>
     </dependency>
     <dependency>
       <groupId>com.google.inject</groupId>

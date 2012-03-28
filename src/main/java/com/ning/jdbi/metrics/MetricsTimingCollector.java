@@ -7,7 +7,7 @@ import org.skife.jdbi.v2.TimingCollector;
 
 import com.yammer.metrics.core.MetricName;
 import com.yammer.metrics.core.MetricsRegistry;
-import com.yammer.metrics.core.TimerMetric;
+import com.yammer.metrics.core.Timer;
 
 public class MetricsTimingCollector implements TimingCollector
 {
@@ -31,7 +31,7 @@ public class MetricsTimingCollector implements TimingCollector
     public void collect(long elapsedTime, StatementContext ctx)
     {
         StatementName statementName = jdbiGroupStrategy.getStatementName(ctx);
-        TimerMetric timer = metricsRegistry.newTimer(new MetricName(statementName.getGroupName(), statementName.getTypeName(), statementName.getStatementName()),
+        Timer timer = metricsRegistry.newTimer(new MetricName(statementName.getGroupName(), statementName.getTypeName(), statementName.getStatementName()),
                                                      durationUnit,
                                                      rateUnit);
 
